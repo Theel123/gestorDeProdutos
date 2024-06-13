@@ -33,7 +33,7 @@ $ git@github.com:Theel123/gestorDeProdutos.git
 # Acesse a pasta do projeto no terminal/cmd
 $ cd gestorDeProdutos
 
-# Rode o seguintes comandos
+# Rode os seguintes comandos
 $ make setup-local
 $ make local-serve
 $ docker exec -it gestor_application bash
