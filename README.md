@@ -35,10 +35,6 @@ $ php artisan migrate --seed
 
 # Documentação escrita com mais detalhes sobre a aplicação
 ```
-```
-# Documentação escrita com mais detalhes sobre a aplicação
-```
-
 https://docs.google.com/document/d/1G3JV4RmI5wsRCrFi3lgA8ChQrKwdELlAM5GFa_6kjt0/edit
 
 ```
