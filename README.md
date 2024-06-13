@@ -48,7 +48,7 @@ Essa documentação só funciona com o sistema ativo
 [Documentação Open Api Json Api](http://localhost:9011/docs/api-docs.json)
 
 #
-# Release Futuras
+# Releases Futuras
 
 * Tipos de Produtos 
 * Marcas de Produtos 
