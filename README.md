@@ -33,7 +33,6 @@ $ php artisan migrate --seed
 ```
 # O servidor inciará na porta 9011 - acesse <http://localhost:9011>
 
-#
 # Documentação escrita com mais detalhes sobre a aplicação
 
 
