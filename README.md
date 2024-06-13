@@ -39,6 +39,6 @@ $ php artisan migrate --seed
 
 # Documentação Swagger
 
-[Documentação Open Api](http://localhost:9011/api/documentation#/)
+[Documentação Open Api](http://localhost:9011/api/documentation#/) |
 [Documentação Open Api Json Api](http://localhost:9011/docs/api-docs.json)
 
