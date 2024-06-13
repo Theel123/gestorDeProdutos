@@ -43,3 +43,10 @@ Essa documentação só funciona com o sistema ativo
 [Documentação Open Api](http://localhost:9011/api/documentation#/) |
 [Documentação Open Api Json Api](http://localhost:9011/docs/api-docs.json)
 
+# Release Futuras
+
+Tipos de Produtos,
+Marcas de Produtos,
+Tipos de Usuários ( Vários tipos de usuários, hoje temos User Comum e Admin User ),
+Sistema de Compras
+
