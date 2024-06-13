@@ -1,7 +1,7 @@
-# Pastéis ZN
+# Gestor De Produtos 
 
 ## Descrição do Projeto
-<p align="center">Api criada para o Desafio Backend da Commerc</p>
+<p align="center">Api criada para o Desafio Backend da Cellar Vinhos</p>
 
 ### Pré-requisitos
 
