@@ -10,11 +10,13 @@ clean:
 setup-local:
 	docker-compose -p gestor_application up --build -d && \
 	docker exec -it gestor_application php artisan cache:clear && \
-				 	php artisan view:clear && \
+				 	php artissssssssssssssan view:clear && \
 				 	php artisan route:clear && \
 				 	php artisan config:clear && \
 				 	php artisan key:generate && \
 				 	php artisan storage:link && \
+					php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider" && \
+					php artisan l5-swagger:generate && \
 					php artisan jwt:secret --always-no && \
 				 	composer install
 local-serve:
