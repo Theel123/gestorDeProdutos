@@ -45,8 +45,8 @@ Essa documentação só funciona com o sistema ativo
 
 # Release Futuras
 
-Tipos de Produtos |,
-Marcas de Produtos |, 
-Tipos de Usuários ( Vários tipos de usuários, hoje temos User Comum e Admin User ) |,
-Sistema de Compras
+* Tipos de Produtos 
+* Marcas de Produtos 
+* Tipos de Usuários ( Vários tipos de usuários, hoje temos User Comum e Admin User ) 
+* Sistema de Compras
 
