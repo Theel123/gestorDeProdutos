@@ -1,0 +1,12 @@
+actor: ApiTester
+suite_namespace: Tests\Api
+modules:
+   enabled:
+       - REST:
+           depends: PhpBrowser
+           url: &url 'https://localhost.com:9011/api/v1/'
+   config:
+       PhpBrowser:
+           url: *url
+           headers:
+               Content-Type: application/json

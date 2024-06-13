@@ -1,0 +1,20 @@
+parameters:
+	level: 5
+	treatPhpDocTypesAsCertain: false
+	paths:
+		- ../../../src
+	excludePaths:
+		- app/Http/Kernel.php
+		- app/Exceptions/Handler.php
+		- tests/*
+	ignoreErrors:
+		-
+			message: '#Access to an undefined property [a-zA-Z0-9\\_]#'
+			path: app/*
+		-
+			message: '#Call to an undefined static method [a-zA-Z0-9\\_]#'
+			path: app/*
+		-
+			message: '#Call to an undefined method [a-zA-Z0-9\\_]#'
+			path: app/*
+
