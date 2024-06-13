@@ -36,20 +36,10 @@ $ cd gestorDeProdutos
 # Rode o seguintes comandos
 $ make setup-local
 $ make local-serve
+$ docker exec -it gestor_application bash
+$ php artisan migrate --seed
 
-TALVEZ ANTES DESSE COMANDO SEJA NECESSÁRIO RODAR UM sudo chmod 777 -R ../<PASTA DO PROJETO>
-$ make populate-db
-
-# O servidor inciará na porta:9011 - acesse <http://localhost:9011>
 ```
-
-# Acesse a pasta do projeto no terminal/cmd
-$ cd gestorDeProdutos
-
-# Rode o seguintes comandos
-$ make setup-local
-$ make local-serve
-$ make populate-db
 
 # O servidor inciará na porta:9011 - acesse <http://localhost:9011>
 # Documentação escrita com mais detalhes sobre a aplicação
