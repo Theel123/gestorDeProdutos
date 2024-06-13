@@ -1,0 +1,11 @@
+actor: ApiTester
+step_decorators:
+    - \Codeception\Step\AsJson
+modules:
+   enabled:
+       - REST:
+           depends: PhpBrowser
+   config:
+       PhpBrowser:
+           headers:
+               Content-Type: application/json
