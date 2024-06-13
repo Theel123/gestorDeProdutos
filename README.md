@@ -34,12 +34,11 @@ $ php artisan migrate --seed
 # O servidor inciará na porta:9011 - acesse <http://localhost:9011>
 
 # Documentação escrita com mais detalhes sobre a aplicação
-```
+
 [Documentação Escrita](https://docs.google.com/document/d/1G3JV4RmI5wsRCrFi3lgA8ChQrKwdELlAM5GFa_6kjt0/edit)
 
-```
 # Documentação Swagger
-```
-[Documentação Open Api] (http://localhost:9011/api/documentation#/)
-[Documentação Open Api Json Api] (http://localhost:9011/docs/api-docs.json)
+
+[Documentação Open Api](http://localhost:9011/api/documentation#/)
+[Documentação Open Api Json Api](http://localhost:9011/docs/api-docs.json)
 
