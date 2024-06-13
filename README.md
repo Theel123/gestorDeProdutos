@@ -38,6 +38,7 @@ $ php artisan migrate --seed
 [Documentação Escrita](https://docs.google.com/document/d/1G3JV4RmI5wsRCrFi3lgA8ChQrKwdELlAM5GFa_6kjt0/edit)
 
 # Documentação Swagger
+#Essa documentação só funciona com o sistema ativo
 
 [Documentação Open Api](http://localhost:9011/api/documentation#/) |
 [Documentação Open Api Json Api](http://localhost:9011/docs/api-docs.json)
