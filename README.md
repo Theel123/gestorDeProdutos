@@ -36,6 +36,8 @@ $ cd gestorDeProdutos
 # Rode o seguintes comandos
 $ make setup-local
 $ make local-serve
+
+TALVEZ ANTES DESSE COMANDO SEJA NECESSÁRIO RODAR UM sudo chmod 777 -R ../<PASTA DO PROJETO>
 $ make populate-db
 
 # O servidor inciará na porta:9011 - acesse <http://localhost:9011>
