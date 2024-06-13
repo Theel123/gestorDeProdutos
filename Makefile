@@ -10,7 +10,7 @@ clean:
 setup-local:
 	docker-compose -p gestor_application up --build -d && \
 	docker exec -it gestor_application php artisan cache:clear && \
-				 	php artissssssssssssssan view:clear && \
+				 	php artisan view:clear && \
 				 	php artisan route:clear && \
 				 	php artisan config:clear && \
 				 	php artisan key:generate && \
