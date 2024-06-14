@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
             return auth()->user()->is_admin === 'Yes';
         });
 
-        Gate::define('view-customer-list', function () {
+        Gate::define('manage-customer', function () {
             return auth()->user()->is_admin === 'Yes';
         });
     }

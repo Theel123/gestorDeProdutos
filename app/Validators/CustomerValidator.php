@@ -2,8 +2,11 @@
 
 namespace App\Validators;
 
-use App\Exceptions\CustomerExceptions;
 use App\Models\User;
+use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\Gate;
+use App\Exceptions\CustomerExceptions;
+use Illuminate\Support\Facades\Validator;
 
 class CustomerValidator
 {
@@ -11,9 +14,17 @@ class CustomerValidator
     {
     }
 
-    public function validateUserFromEntity(User $entity): void
-    {
-        if ($entity instanceof User && auth()->user()?->id !== $entity->getId()) {
+    public function validateUserFromEntity(User $entity)
+    {        
+        if(!Gate::allows('manage-customer') && auth()->user()->id === $entity->getId()) {
+            return true;
+        }
+
+        if (Gate::allows('manage-customer')) {
+            return true;
+        }
+
+        if (auth()->user()?->id !== $entity->getId()) {
             throw CustomerExceptions::differentUserRequestingData();
         }
     }
