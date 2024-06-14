@@ -28,6 +28,7 @@ class CustomerController extends Controller
       *     summary="Returns a list of customers",
       *     description="Returns a object of all customers",
       *     path="/api/v1/customers",
+      *     security={ {"bearer": {}} },
       *     @OA\Response(response="200", description="list of Customers"),
       * ),
       *
@@ -67,6 +68,7 @@ class CustomerController extends Controller
      *         required=true,
      *         @OA\Schema(type="string"),
      *     ),
+     *     security={ {"bearer": {}} },
      *     @OA\Response(response="200", description="One Customer"),
      * ),
      *sss
@@ -177,6 +179,7 @@ class CustomerController extends Controller
       *         required=false,
       *         @OA\Schema(type="string"),
       *     ),
+      *     security={ {"bearer": {}} },
       *     @OA\Response(response="200", description="update Customer"),
       * ),
       *
@@ -228,6 +231,7 @@ class CustomerController extends Controller
       *         required=true,
       *         @OA\Schema(type="string"),
       *     ),
+      *     security={ {"bearer": {}} },
       *     @OA\Response(response="200", description="delete Customer"),
       * ),
       *
