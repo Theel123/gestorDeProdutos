@@ -9,6 +9,7 @@ class CustomerUpdateCest
 {
     private $url = "http://localhost:9011/api/v1/customer";
     private string $tokenLoginAdmin;
+    private string $tokenLoginUser;
 
     // tests
 
@@ -22,6 +23,14 @@ class CustomerUpdateCest
         $this->tokenLoginAdmin = $testHelper::login(
             [
                 'email' => 'admin@cellar.com',
+                'password' => 'password',
+            ],
+            $I
+        );
+
+        $this->tokenLoginUser = $testHelper::login(
+            [
+                'email' => 'user@cellar.com',
                 'password' => 'password',
             ],
             $I
@@ -81,5 +90,25 @@ class CustomerUpdateCest
         $I->sendGet(sprintf("$this->url/%s", '11'));
 
         $I->seeResponseCodeIs(HttpCode::UNAUTHORIZED);
+    }
+
+    public function ifUserIsAdminAccessingOtherUsers(ApiTester $I)
+    {
+        $I->wantTo('Test If User Is Admin Accessing Other Users');
+
+        $I->sendPut(sprintf("$this->url/%s/%s", "11", "?password=123465"));
+
+        $I->seeResponseCodeIs(HttpCode::OK);
+    }
+
+    public function ifUserComumAccessingAnotherUser(ApiTester $I)
+    {
+        $I->wantTo('Test User Comum Accessing Another User');
+
+        $I->amBearerAuthenticated($this->tokenLoginUser);
+
+        $I->sendPut(sprintf("$this->url/%s/%s", "11", "?password=12345"));
+
+        $I->seeResponseCodeIs(HttpCode::BAD_REQUEST);
     }
 }
