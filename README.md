@@ -13,12 +13,6 @@ Além disso é bom ter um editor para trabalhar com o código como [VSCode](http
 
 ```bash
 # Clone este repositório
-$ git clone # Gestor De Produtos 
-
-### 🎲 Rodando o Back End (servidor)
-
-```bash
-# Clone este repositório
 $ git@github.com:Theel123/gestorDeProdutos.git
 
 # Acesse a pasta do projeto no terminal/cmd
