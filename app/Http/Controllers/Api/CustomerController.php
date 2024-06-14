@@ -3,21 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use Exception;
-use App\Models\User;
 use App\Responses\Response;
 use Illuminate\Http\Request;
 use App\Services\CustomerService;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
+use App\Validators\CustomerValidator;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\CustomerRequests\StoreCustomerFormRequest;
-use App\Http\Requests\CustomerRequests\UpdateCustomerFormRequest;
 
 class CustomerController extends Controller
 {
     public function __construct(
         private CustomerService $customerService,
+        private CustomerValidator $customerValidator
     ) {
 
     }
@@ -36,8 +35,8 @@ class CustomerController extends Controller
 
     public function index(): JsonResponse
     {
-        if (!Gate::allows('view-customer-list')) {
-            abort(403, 'Acesso Negado');
+        if(!Gate::allows('manage-customer')) {
+            abort(403, 'Acesso negado');
         }
 
         try {
@@ -73,13 +72,16 @@ class CustomerController extends Controller
      *sss
     */
 
-    public function show(): JsonResponse
-    {
+    public function show(int $id): JsonResponse
+    {   
         try {
+            
+            $this->customerValidator->validateUserFromEntity($this->customerService->get($id));
+
             return $this->successJsonResponse(
                 Response::HTTP_OK,
                 'Usuário Encontrado Com Sucesso',
-                $this->customerService->get(auth()->user()->id),
+                $this->customerService->get($id),
             );
         } catch (Exception $e) {
             return $this->errorJsonResponse(
@@ -180,10 +182,8 @@ class CustomerController extends Controller
       *
      */
 
-    public function update(Request $request): JsonResponse
+    public function update(Request $request, $idC): JsonResponse
     {
-        $userId = auth()->user()->id;
-
         $validator = Validator::make($request->all(), [
             'name' => ['nullable', 'string', 'min:3', 'max:255'],
             'email' => ['nullable', 'email', 'unique:users'],
@@ -195,11 +195,14 @@ class CustomerController extends Controller
         }
 
         try {
+            
+            $this->customerValidator->validateUserFromEntity($this->customerService->get($idC));
+
             return $this->successJsonResponse(
                 Response::HTTP_OK,
-                "Usuário $userId Atualizado Com Sucesso",
+                "Usuário $idC Atualizado Com Sucesso",
                 $this->customerService->updateCustomer(
-                    $this->customerService->get($userId),
+                    $this->customerService->get($idC),
                     $request->all()
                 )
             );
@@ -230,15 +233,15 @@ class CustomerController extends Controller
       *
      */
 
-    public function destroy(): JsonResponse
+    public function destroy($idC): JsonResponse
     {
-        $userId = auth()->user()->id;
-
         try {
+            $this->customerValidator->validateUserFromEntity($this->customerService->get($idC));
+
             return $this->successJsonResponse(
                 Response::HTTP_OK,
-                "Usuário $userId Excluido Com Sucesso",
-                $this->customerService->deleteCustomer($userId),
+                "Usuário $idC Excluido Com Sucesso",
+                $this->customerService->deleteCustomer($idC),
             );
         } catch (Exception $e) {
             return $this->errorJsonResponse(
