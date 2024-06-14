@@ -18,17 +18,19 @@ class CustomerStoreCest
     {
         $I->wantTo('Test Successfully');
 
+        $chr = bin2hex(openssl_random_pseudo_bytes(5));
+
         $I->sendPOST(
             $this->url,
             [
                 'name' => 'testeName',
-                'email' => 'teste1235423213@hotmail.comm',
+                'email' => "$chr@hotmail.com",
                 'password' => 'password',
             ]
         );
 
         $I->seeResponseIsJson();
-        $I->seeResponseCodeIs(HttpCode::BAD_REQUEST);
+        $I->seeResponseCodeIs(HttpCode::CREATED);
     }
 
     public function withWrongEmail(ApiTester $I)
@@ -75,7 +77,7 @@ class CustomerStoreCest
             $this->url,
             [
                 'name' => 'testeName2',
-                'email' => "teste2@email.com",
+                'email' => "@email.com",
                 'password' => '12345',
             ]
         );

@@ -55,7 +55,7 @@
                 },
                 "security": [
                     {
-                        "token": []
+                        "bearer": []
                     }
                 ]
             }
@@ -86,7 +86,7 @@
                 },
                 "security": [
                     {
-                        "token": []
+                        "bearer": []
                     }
                 ]
             },
@@ -133,7 +133,7 @@
                 },
                 "security": [
                     {
-                        "token": []
+                        "bearer": []
                     }
                 ]
             },
@@ -162,7 +162,7 @@
                 },
                 "security": [
                     {
-                        "token": []
+                        "bearer": []
                     }
                 ]
             }
@@ -226,7 +226,7 @@
                 },
                 "security": [
                     {
-                        "token": []
+                        "bearer": []
                     }
                 ]
             }
@@ -257,7 +257,7 @@
                 },
                 "security": [
                     {
-                        "token": []
+                        "bearer": []
                     }
                 ]
             },
@@ -286,7 +286,7 @@
                 },
                 "security": [
                     {
-                        "token": []
+                        "bearer": []
                     }
                 ]
             }
@@ -362,7 +362,7 @@
                 },
                 "security": [
                     {
-                        "token": []
+                        "bearer": []
                     }
                 ]
             }
@@ -429,7 +429,7 @@
                 },
                 "security": [
                     {
-                        "token": []
+                        "bearer": []
                     }
                 ]
             }
@@ -437,11 +437,18 @@
     },
     "components": {
         "securitySchemes": {
-            "Bearer": {
-                "type": "apiKey",
+            "bearer": {
+                "type": "http",
+                "description": "Authorization token obtained from logging in.",
                 "name": "Authorization",
-                "in": "header"
+                "in": "header",
+                "scheme": "bearer"
             }
         }
-    }
+    },
+    "security": [
+        {
+            "bearer": []
+        }
+    ]
 }

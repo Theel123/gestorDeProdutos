@@ -66,7 +66,6 @@ class ProductStoreCest
 
         $I->sendPost(
             $this->url,
-            $this->url,
             [
                 "name" => '',
                 "quantity" => "10",
