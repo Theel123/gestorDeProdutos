@@ -27,6 +27,7 @@ class ProductController extends Controller
       *     summary="Returns a list of products",
       *     description="Returns a object of all products",
       *     path="/api/v1/products",
+      *     security={ {"bearer": {}} },      
       *     @OA\Response(response="200", description="list of products"),
       * ),
       *
@@ -62,6 +63,7 @@ class ProductController extends Controller
       *         required=true,
       *         @OA\Schema(type="string"),
       *     ),
+      *     security={ {"bearer": {}} },
       *     @OA\Response(response="200", description="one product"),
       * ),
       *
@@ -132,6 +134,7 @@ class ProductController extends Controller
       *         required=false,
       *         @OA\Schema(type="string"),
       *     ),
+      *     security={ {"bearer": {}} },
       *     @OA\Response(response="200", description="update Product"),
       * ),
       *
@@ -188,6 +191,7 @@ class ProductController extends Controller
       *         required=true,
       *         @OA\Schema(type="string"),
       *     ),
+      *     security={ {"bearer": {}} },
       *     @OA\Response(response="200", description="return a product deleted"),
       * ),
       *
@@ -255,6 +259,7 @@ class ProductController extends Controller
       *         required=false,
       *         @OA\Schema(type="string"),
       *     ),
+      *     security={ {"bearer": {}} },
       *     @OA\Response(response="200", description="Create Product"),
       * ),
       *

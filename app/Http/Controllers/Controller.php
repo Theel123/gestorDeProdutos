@@ -11,12 +11,6 @@ use Illuminate\Routing\Controller as BaseController;
  *   version="1.0.0",
  *   title="Gestor De Pedidos"
  * )
-* @OA\SecurityScheme(
- *     type="apiKey",
- *     in="header",
- *     securityScheme="Bearer",
- *     name="Authorization"
- * )
  */
 
 class Controller extends BaseController
