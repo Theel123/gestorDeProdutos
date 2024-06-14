@@ -75,9 +75,9 @@ class CustomerController extends Controller
     */
 
     public function show(int $id): JsonResponse
-    {   
+    {
         try {
-            
+
             $this->customerValidator->validateUserFromEntity($this->customerService->get($id));
 
             return $this->successJsonResponse(
@@ -198,7 +198,7 @@ class CustomerController extends Controller
         }
 
         try {
-            
+
             $this->customerValidator->validateUserFromEntity($this->customerService->get($idC));
 
             return $this->successJsonResponse(

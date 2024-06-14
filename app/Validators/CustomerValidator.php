@@ -15,7 +15,7 @@ class CustomerValidator
     }
 
     public function validateUserFromEntity(User $entity)
-    {        
+    {
         if(!Gate::allows('manage-customer') && auth()->user()->id === $entity->getId()) {
             return true;
         }

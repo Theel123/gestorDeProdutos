@@ -27,7 +27,7 @@ class ProductController extends Controller
       *     summary="Returns a list of products",
       *     description="Returns a object of all products",
       *     path="/api/v1/products",
-      *     security={ {"bearer": {}} },      
+      *     security={ {"bearer": {}} },
       *     @OA\Response(response="200", description="list of products"),
       * ),
       *
