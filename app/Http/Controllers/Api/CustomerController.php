@@ -10,7 +10,6 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use App\Validators\CustomerValidator;
-use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
 {
@@ -18,7 +17,6 @@ class CustomerController extends Controller
         private CustomerService $customerService,
         private CustomerValidator $customerValidator
     ) {
-
     }
 
     /**
@@ -103,21 +101,21 @@ class CustomerController extends Controller
       *         description="Customer Name",
       *         in="query",
       *         name="name",
-      *         required=false,
+      *         required=true,
       *         @OA\Schema(type="string"),
       *     ),
       *      @OA\Parameter(
       *         description="Customer Email",
       *         in="query",
       *         name="email",
-      *         required=false,
+      *         required=true,
       *         @OA\Schema(type="string"),
       *     ),
       *     @OA\Parameter(
       *         description="Customer Password",
       *         in="query",
       *         name="password",
-      *         required=false,
+      *         required=true,
       *         @OA\Schema(type="string"),
       *     ),
       *     @OA\Response(response="200", description="Create Customer"),
@@ -127,17 +125,10 @@ class CustomerController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-            'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:6', 'max:15'],
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
-
         try {
+
+            $this->customerValidator->validateStoreUpdateRequest($request->all(), 'store');
+
             return $this->successJsonResponse(
                 Response::HTTP_CREATED,
                 'Usuário Criado Com Sucesso',
@@ -187,18 +178,9 @@ class CustomerController extends Controller
 
     public function update(Request $request, $idC): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            'name' => ['nullable', 'string', 'min:3', 'max:255'],
-            'email' => ['nullable', 'email', 'unique:users'],
-            'password' => ['nullable', 'min:6', 'max:15'],
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
-
         try {
 
+            $this->customerValidator->validateStoreUpdateRequest($request->all(), 'update');
             $this->customerValidator->validateUserFromEntity($this->customerService->get($idC));
 
             return $this->successJsonResponse(

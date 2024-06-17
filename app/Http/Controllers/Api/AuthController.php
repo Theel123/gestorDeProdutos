@@ -27,7 +27,7 @@ class AuthController extends Controller
       *         description="Customer Password",
       *         in="query",
       *         name="password",
-      *         required=false,
+      *         required=true,
       *         @OA\Schema(type="string"),
       *     ),
       *     @OA\Response(response="200", description="Customer Logged"),
@@ -62,6 +62,18 @@ class AuthController extends Controller
             );
         }
     }
+
+    /**
+     * @OA\Post(
+     *     tags={"Auth"},
+     *     summary="Return a customer logged out",
+     *     description="Return a customer logged logged out",
+     *     path="/api/v1/logout/",
+     *     security={{"token": {}}},
+     *     @OA\Response(response="200", description="Customer Logged Out "),
+     * ),
+     *
+    */
 
     public function logout(): JsonResponse
     {
