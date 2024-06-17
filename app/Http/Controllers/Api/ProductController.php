@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Services\ProductService;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use App\Validators\ProductValidator;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,6 +17,7 @@ class ProductController extends Controller
 {
     public function __construct(
         private ProductService $productService,
+        private ProductValidator $productValidator,
     ) {
 
     }
@@ -142,17 +144,6 @@ class ProductController extends Controller
 
     public function update($idP, Request $request): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            'name' => ['nullable', 'string', 'min:3', 'max:255'],
-            'quantity' => ['nullable', 'integer'],
-            'description' => ['nullable', 'min:6', 'max:15'],
-            'price' => ['nullable'],
-            'status' => ['nullable', 'integer'],
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
 
         if(!Gate::allows('manage-products')) {
             abort(403, 'Acesso negado');
@@ -161,6 +152,9 @@ class ProductController extends Controller
         $request = $request->all();
 
         try {
+
+            $this->productValidator->validateStoreUpdateRequest($request, 'update');
+
             return $this->successJsonResponse(
                 Response::HTTP_OK,
                 "Produto $idP Atualizado Com Sucesso",
@@ -228,35 +222,35 @@ class ProductController extends Controller
       *         description="Product Name",
       *         in="query",
       *         name="name",
-      *         required=false,
+      *         required=true,
       *         @OA\Schema(type="string"),
       *     ),
       *      @OA\Parameter(
       *         description="Product Quantity",
       *         in="query",
       *         name="quantity",
-      *         required=false,
+      *         required=true,
       *         @OA\Schema(type="string"),
       *     ),
       *     @OA\Parameter(
       *         description="Product Description",
       *         in="query",
       *         name="description",
-      *         required=false,
+      *         required=true,
       *         @OA\Schema(type="string"),
       *     ),
       *     @OA\Parameter(
       *         description="Product Price",
       *         in="query",
       *         name="price",
-      *         required=false,
+      *         required=true,
       *         @OA\Schema(type="string"),
       *     ),
       *     @OA\Parameter(
       *         description="Product Status",
       *         in="query",
       *         name="status",
-      *         required=false,
+      *         required=true,
       *         @OA\Schema(type="string"),
       *     ),
       *     security={ {"bearer": {}} },
@@ -267,19 +261,10 @@ class ProductController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-            'quantity' => ['required', 'integer'],
-            'description' => ['required', 'min:6', 'max:15'],
-            'price' => ['required', 'numeric', 'between:0,99.99',],
-            'status' => ['required', 'integer'],
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
-
         try {
+
+            $this->productValidator->validateStoreUpdateRequest($request->all(), 'store');
+
             return $this->successJsonResponse(
                 Response::HTTP_CREATED,
                 'Produto Criado Com Sucesso',

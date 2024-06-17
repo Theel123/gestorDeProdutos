@@ -107,7 +107,7 @@ class CustomerUpdateCest
 
         $I->amBearerAuthenticated($this->tokenLoginUser);
 
-        $I->sendPut(sprintf("$this->url/%s/%s", "11", "?password=12345"));
+        $I->sendPut(sprintf("$this->url/%s/%s", "9", "?password=123"));
 
         $I->seeResponseCodeIs(HttpCode::BAD_REQUEST);
     }
